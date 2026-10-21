@@ -22,6 +22,10 @@ All three models are evaluated on the same **4,920 station-days** from January 2
 
 MAE-trained boosting lowers overall error by **17.0%** compared with persistence, but its high-case error is larger and its recall is **17.4 percentage points lower**. Its alerts are more precise. These results support evaluating several task-relevant metrics together; they do not establish that boosting always underperforms persistence.
 
+![Each model's overall MAE against its high-case MAE; lower and further left is better](mae-tradeoff.svg)
+
+The joint view makes the trade-off visible: MAE boosting moves left of persistence (lower overall error) but upward (higher high-case error). Dashed lines mark the persistence scores, and the shaded region identifies this combination. Axes are zoomed to compare the estimates; uncertainty appears in the separate interval chart below.
+
 ![Overall error and high-concentration error with 95% block-bootstrap intervals](error-comparison.svg)
 
 ![High-concentration recall and alert precision with 95% block-bootstrap intervals](alert-tradeoff.svg)
@@ -54,7 +58,7 @@ python analysis.py
 
 If PowerShell activation is disabled, use `.venv\Scripts\python.exe -m pip install -r requirements.txt` and `.venv\Scripts\python.exe analysis.py` directly. The first run needs Internet access to download approximately 8 MB from UCI. Subsequent runs use the checksum-verified local copy. Runtime depends on the machine and includes 4,000 bootstrap resamples across the main and sensitivity analyses.
 
-The command regenerates `metrics.json`, local `test_predictions.json`, and the two SVG figures. To redraw only the figures from the committed numerical results, run `python plot_results.py`. Exact dependencies are pinned; small floating-point differences may occur across platforms.
+The command regenerates `metrics.json`, local `test_predictions.json`, and the three SVG figures. To redraw only the figures from the committed numerical results, run `python plot_results.py`. Exact dependencies are pinned; small floating-point differences may occur across platforms.
 
 ## Limitations and next work
 
@@ -62,10 +66,14 @@ This is a historical benchmark from twelve Beijing stations, not a current forec
 
 Next I plan to examine station-level errors, test rolling forecast origins and repeat the evaluation on more recent data before making deployment claims.
 
+## Improvement following classmate feedback
+
+Xiaoyu Guo reviewed the website and repository, correctly identifying the evaluation question, the average-versus-high-case trade-off and the historical scope. She suggested plotting overall MAE against high-case MAE so readers could compare both metrics at a glance. I added `mae-tradeoff.svg`, with labeled points for all three models, and made it the default portfolio view. The existing interval and alert charts remain available. This changes the presentation, not the fitted models or numerical results.
+
 ## Repository guide
 
 - `analysis.py`: data download, checks, preprocessing, models, evaluation and figure generation.
-- `plot_results.py`: two publication-quality SVG visualizations from the calculated results.
+- `plot_results.py`: three SVG visualizations from the calculated results, including the joint MAE comparison.
 - `requirements.txt`: exact Python dependencies.
 - `metrics.json`: full numerical results, uncertainty intervals and sensitivity checks.
 - `methods.md`: detailed methods from the completed analysis.

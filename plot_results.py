@@ -61,7 +61,37 @@ def make_figures():
         fig.text(.04, .05, "Whiskers: 95% paired seven-day block-bootstrap intervals, conditional on fitted models. Source: UCI / Chen (2017).", fontsize=10, color="#64716f")
         fig.savefig(folder / f"{filename}.svg", metadata={"Date": None})
         plt.close(fig)
-    print("Saved error-comparison.svg and alert-tradeoff.svg", flush=True)
+    # Show both errors together, as suggested in the classmate review.
+    baseline = results["models"]["Persistence"]
+    fig, ax = plt.subplots(figsize=(13.4, 6.8))
+    fig.patch.set_facecolor("#ffffff")
+    fig.subplots_adjust(left=.12, right=.94, top=.77, bottom=.24)
+    fig.text(.04, .93, "The average improves. High-case error grows.", fontsize=21, weight="bold")
+    fig.text(.04, .865, "Each point is one model. Lower and further left is better.", fontsize=14, color="#64716f")
+    ax.fill_between([33, baseline["mae_all"]], baseline["mae_high"], 112,
+                    color="#faf0eb", zorder=0)
+    ax.axvline(baseline["mae_all"], color="#89938e", linestyle="--", linewidth=1.2)
+    ax.axhline(baseline["mae_high"], color="#89938e", linestyle="--", linewidth=1.2)
+    offsets = [(12, 13), (14, -3), (14, 13)]
+    for name, label, color, marker, offset in zip(models, LABELS, COLORS, ["o", "D", "s"], offsets):
+        row = results["models"][name]
+        x, y = row["mae_all"], row["mae_high"]
+        ax.scatter(x, y, s=115, color=color, marker=marker, edgecolor="white", linewidth=1.2, zorder=3)
+        ax.annotate(f"{label}\n({x:.2f}, {y:.2f})", (x, y), xytext=offset,
+                    textcoords="offset points", fontsize=13, weight="bold", color=color)
+    ax.set(xlim=(33, 48), ylim=(84, 112),
+           xlabel="Overall MAE (µg/m³) ↓", ylabel="High-case MAE (µg/m³) ↓",
+           xticks=[34, 36, 38, 40, 42, 44, 46, 48], yticks=[85, 90, 95, 100, 105, 110])
+    ax.grid(color="#e4e9e6", linewidth=.8)
+    ax.set_axisbelow(True)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.spines[["bottom", "left"]].set_color("#bac6c0")
+    fig.text(.04, .12, "Dashed lines: persistence scores. Shading: lower overall but higher high-case error than persistence.", fontsize=12)
+    fig.text(.04, .075, "Axes are zoomed; labels show (overall MAE, high-case MAE). Points are estimates; see the interval chart for uncertainty.", fontsize=11, color="#64716f")
+    fig.text(.04, .03, "4,920 test station-days · 459 high cases · Cutoff: training P90 = 168.4 µg/m³ · Source: UCI / Chen (2017).", fontsize=11, color="#64716f")
+    fig.savefig(folder / "mae-tradeoff.svg", metadata={"Date": None})
+    plt.close(fig)
+    print("Saved error-comparison.svg, alert-tradeoff.svg and mae-tradeoff.svg", flush=True)
 
 
 if __name__ == "__main__":
