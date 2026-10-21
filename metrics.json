@@ -1,0 +1,433 @@
+{
+  "author": "Xiji Hang",
+  "source": {
+    "url": "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data",
+    "download_url": "https://archive.ics.uci.edu/static/public/501/beijing+multi+site+air+quality+data.zip",
+    "doi": "10.24432/C5RK5G",
+    "license": "CC BY 4.0",
+    "access_date": "2026-10-07",
+    "sha256": "b04da438b2f331ac0ffd45aebdfec0d20d2367feb5f6948c4b1f7ce1191e33c4"
+  },
+  "raw_rows": 420768,
+  "stations": [
+    "Aotizhongxin",
+    "Changping",
+    "Dingling",
+    "Dongsi",
+    "Guanyuan",
+    "Gucheng",
+    "Huairou",
+    "Nongzhanguan",
+    "Shunyi",
+    "Tiantan",
+    "Wanliu",
+    "Wanshouxigong"
+  ],
+  "raw_pm25_missing": 8739,
+  "daily_grid_rows": 17532,
+  "eligible_rows": 16962,
+  "training_rows": 12030,
+  "test_rows": 4920,
+  "omitted_boundary_rows": 12,
+  "training_origin_range": [
+    "2013-03-01",
+    "2015-12-30"
+  ],
+  "training_target_range": [
+    "2013-03-02",
+    "2015-12-31"
+  ],
+  "test_origin_range": [
+    "2016-01-01",
+    "2017-02-27"
+  ],
+  "test_target_range": [
+    "2016-01-02",
+    "2017-02-28"
+  ],
+  "test_calendar_days": 424,
+  "test_high_calendar_days": 54,
+  "high_threshold": 168.39384057971017,
+  "test_high_rows": 459,
+  "test_high_percent": 9.329268292682928,
+  "observed_bin_cutpoints": [
+    0,
+    62.791666666666664,
+    110.91666666666667,
+    168.39384057971017
+  ],
+  "observed_bin_counts": [
+    2724,
+    1205,
+    532,
+    459
+  ],
+  "models": {
+    "Persistence": {
+      "mae_all": 43.24264386379549,
+      "mae_high": 90.4657747156577,
+      "recall_high_pct": 52.50544662309368,
+      "precision_high_pct": 51.495726495726494,
+      "bias_by_observed_bin": [
+        23.38299278322659,
+        -11.299888431176399,
+        -35.76038105900903,
+        -62.58061911630771
+      ],
+      "mae_all_ci": [
+        37.27416202856069,
+        49.717474783489685
+      ],
+      "mae_high_ci": [
+        74.3079964665811,
+        107.39125644664173
+      ],
+      "recall_high_pct_ci": [
+        38.44396490226851,
+        64.00049627791563
+      ],
+      "precision_high_pct_ci": [
+        36.80707503737512,
+        63.63700384122919
+      ],
+      "bias_by_observed_bin_ci": [
+        [
+          17.80593076480141,
+          29.81849592536922
+        ],
+        [
+          -18.301276104741603,
+          -3.7137910650612147
+        ],
+        [
+          -46.164758920915375,
+          -25.350291893608894
+        ],
+        [
+          -86.33234622986164,
+          -40.485595442053636
+        ]
+      ],
+      "rmse_all": 65.12360855720593,
+      "bias_high": -62.58061911630771,
+      "tp": 241,
+      "fn": 218,
+      "fp": 227,
+      "tn": 4234
+    },
+    "Boosting MAE": {
+      "mae_all": 35.89542893981741,
+      "mae_high": 105.23992632651162,
+      "recall_high_pct": 35.07625272331155,
+      "precision_high_pct": 74.88372093023256,
+      "bias_by_observed_bin": [
+        24.037965706611864,
+        -6.964013945891984,
+        -33.75645264040678,
+        -103.77874588644528
+      ],
+      "mae_all_ci": [
+        30.95162948968026,
+        41.29052460619259
+      ],
+      "mae_high_ci": [
+        85.72724337766388,
+        123.6806006575824
+      ],
+      "recall_high_pct_ci": [
+        23.246408803373747,
+        46.29001113233736
+      ],
+      "precision_high_pct_ci": [
+        61.93114177489177,
+        85.43325620362242
+      ],
+      "bias_by_observed_bin_ci": [
+        [
+          20.04844916606111,
+          28.395891695773972
+        ],
+        [
+          -10.802532758376579,
+          -3.1753680438637457
+        ],
+        [
+          -40.43373749627274,
+          -26.801765454900174
+        ],
+        [
+          -122.61250473467189,
+          -84.08231190190901
+        ]
+      ],
+      "rmse_all": 53.65892102196503,
+      "bias_high": -103.77874588644528,
+      "tp": 161,
+      "fn": 298,
+      "fp": 54,
+      "tn": 4407
+    },
+    "Boosting MSE": {
+      "mae_all": 36.36801806518649,
+      "mae_high": 90.94543460961177,
+      "recall_high_pct": 44.00871459694989,
+      "precision_high_pct": 67.10963455149502,
+      "bias_by_observed_bin": [
+        29.34359618801965,
+        -3.537389922493323,
+        -25.02101026426688,
+        -84.72686562600038
+      ],
+      "mae_all_ci": [
+        31.856077824560366,
+        41.406333184336674
+      ],
+      "mae_high_ci": [
+        71.28572147424453,
+        109.61373580683906
+      ],
+      "recall_high_pct_ci": [
+        31.860294117647058,
+        54.52318410232983
+      ],
+      "precision_high_pct_ci": [
+        51.92307692307692,
+        79.54573443797582
+      ],
+      "bias_by_observed_bin_ci": [
+        [
+          25.114209405394355,
+          33.946565754710015
+        ],
+        [
+          -7.625595433266482,
+          0.5545065278291066
+        ],
+        [
+          -33.46795814849492,
+          -16.613053185142963
+        ],
+        [
+          -105.58986365428294,
+          -63.615730958555574
+        ]
+      ],
+      "rmse_all": 52.3574976720642,
+      "bias_high": -84.72686562600038,
+      "tp": 202,
+      "fn": 257,
+      "fp": 99,
+      "tn": 4362
+    }
+  },
+  "paired_comparisons": {
+    "Boosting MAE minus Persistence": {
+      "mae_all_difference": -7.347214923978086,
+      "mae_all_difference_ci": [
+        -10.618837235416638,
+        -4.042018873188963
+      ],
+      "mae_high_difference": 14.77415161085392,
+      "mae_high_difference_ci": [
+        2.0530330277416105,
+        28.12554545574814
+      ],
+      "recall_difference_pct_points": -17.429193899782135,
+      "recall_difference_pct_points_ci": [
+        -28.662241277821085,
+        -5.013359054738375
+      ]
+    }
+  },
+  "mae_improvement_percent": 16.990670013425042,
+  "model_parameters": {
+    "max_iter": 200,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 30,
+    "l2_regularization": 10,
+    "early_stopping": false,
+    "random_state": 720407,
+    "categorical_features": "from_dtype"
+  },
+  "feature_columns": [
+    "PM2.5",
+    "PM10",
+    "SO2",
+    "NO2",
+    "CO",
+    "O3",
+    "TEMP",
+    "PRES",
+    "DEWP",
+    "WSPM",
+    "pm25_count",
+    "pm25_std",
+    "rain_sum",
+    "pm25_lag1",
+    "pm25_lag2",
+    "pm25_lag7",
+    "pm25_mean7",
+    "doy_sin",
+    "doy_cos",
+    "weekday",
+    "station"
+  ],
+  "bootstrap": {
+    "type": "circular calendar-day block bootstrap",
+    "block_days": 7,
+    "replicates": 2000,
+    "seed": 720407,
+    "ci": "95% percentile",
+    "all_stations_resampled_together": true,
+    "refit_models": false
+  },
+  "sensitivity": {
+    "threshold": {
+      "q85": {
+        "cutoff": 139.35796052631576,
+        "n_high": 668,
+        "models": {
+          "Persistence": {
+            "mae_high": 81.13979193633101,
+            "recall_pct": 51.946107784431135,
+            "precision_pct": 51.10456553755523
+          },
+          "Boosting MAE": {
+            "mae_high": 87.07180424749886,
+            "recall_pct": 45.808383233532936,
+            "precision_pct": 65.1063829787234
+          },
+          "Boosting MSE": {
+            "mae_high": 75.90547486734116,
+            "recall_pct": 57.18562874251497,
+            "precision_pct": 66.20450606585788
+          }
+        }
+      },
+      "q90": {
+        "cutoff": 168.39384057971017,
+        "n_high": 459,
+        "models": {
+          "Persistence": {
+            "mae_high": 90.4657747156577,
+            "recall_pct": 52.50544662309368,
+            "precision_pct": 51.495726495726494
+          },
+          "Boosting MAE": {
+            "mae_high": 105.23992632651162,
+            "recall_pct": 35.07625272331155,
+            "precision_pct": 74.88372093023256
+          },
+          "Boosting MSE": {
+            "mae_high": 90.94543460961177,
+            "recall_pct": 44.00871459694989,
+            "precision_pct": 67.10963455149502
+          }
+        }
+      },
+      "q95": {
+        "cutoff": 223.9437499999999,
+        "n_high": 248,
+        "models": {
+          "Persistence": {
+            "mae_high": 100.00271955695159,
+            "recall_pct": 39.11290322580645,
+            "precision_pct": 38.95582329317269
+          },
+          "Boosting MAE": {
+            "mae_high": 142.55243382761978,
+            "recall_pct": 4.435483870967742,
+            "precision_pct": 64.70588235294117
+          },
+          "Boosting MSE": {
+            "mae_high": 121.71833419266665,
+            "recall_pct": 17.338709677419356,
+            "precision_pct": 62.31884057971015
+          }
+        }
+      }
+    },
+    "block_length": {
+      "3": {
+        "reps": 1000,
+        "mae_difference_ci": [
+          -10.770627092896119,
+          -4.187792556176472
+        ],
+        "high_mae_difference_ci": [
+          2.2516581043957355,
+          27.356996079058515
+        ],
+        "recall_difference_ci": [
+          -27.872502205054893,
+          -6.389933166248959
+        ]
+      },
+      "14": {
+        "reps": 1000,
+        "mae_difference_ci": [
+          -10.87725345452131,
+          -3.804509259900814
+        ],
+        "high_mae_difference_ci": [
+          0.9290111043636455,
+          26.681940268633547
+        ],
+        "recall_difference_ci": [
+          -29.700614792013585,
+          -3.6685613615210784
+        ]
+      }
+    },
+    "coverage": {
+      "20": {
+        "n_rows": 4869,
+        "n_high": 457,
+        "scores": {
+          "Persistence": {
+            "mae_all": 43.38423112809515,
+            "mae_high": 90.36763012856868,
+            "recall_pct": 52.735229759299784
+          },
+          "Boosting MAE": {
+            "mae_all": 35.959082451166836,
+            "mae_high": 104.95547788479549,
+            "recall_pct": 35.22975929978118
+          },
+          "Boosting MSE": {
+            "mae_all": 36.403623449939055,
+            "mae_high": 90.73379539390326,
+            "recall_pct": 44.201312910284464
+          }
+        }
+      },
+      "24": {
+        "n_rows": 3729,
+        "n_high": 354,
+        "scores": {
+          "Persistence": {
+            "mae_all": 44.76725216769464,
+            "mae_high": 92.50894538606403,
+            "recall_pct": 55.08474576271186
+          },
+          "Boosting MAE": {
+            "mae_all": 36.63176434535097,
+            "mae_high": 108.05122932034114,
+            "recall_pct": 35.31073446327684
+          },
+          "Boosting MSE": {
+            "mae_all": 37.073453477883966,
+            "mae_high": 92.29046279612825,
+            "recall_pct": 46.32768361581921
+          }
+        }
+      }
+    }
+  },
+  "packages": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.1",
+    "scikit-learn": "1.9.1"
+  }
+}
